@@ -1,0 +1,46 @@
+{
+  "name": "mendrek-api",
+  "version": "1.0.0",
+  "description": "A Spotify API wrapper for the Mendrek app.",
+  "author": {
+    "name": "Jenny Belanger",
+    "email": "mail@jennybelanger.com",
+    "url": "https://jennybelanger.com/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jlbelanger/mendrek.git"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/babel-node ./bin/www",
+    "lint": "node_modules/.bin/eslint .",
+    "pretest": "npm run lint",
+    "test": "docker exec -i -t web /bin/bash -c 'NODE_ENV=test node_modules/.bin/mocha ./tests --recursive --require start-test.js --exit'"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "cookie-parser": "^1.4.4",
+    "crypto": "^1.0.1",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "knex": "^0.16.5",
+    "mysql": "^2.16.0",
+    "spotify-web-api-node": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsdoc": "^4.8.3",
+    "mocha": "^6.1.3",
+    "nock": "^10.0.6",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0"
+  }
+}
