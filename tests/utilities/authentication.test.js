@@ -1,21 +1,11 @@
 import chai from 'chai';
-import sinon from 'sinon';
 import { getExpiryDate, getSessionData, getToken } from '../../utilities/authentication';
 
 const expect = chai.expect;
 
-let clock;
 let req;
 
 describe('getExpiryDate', () => {
-  beforeEach('', () => {
-    clock = sinon.useFakeTimers(new Date(Date.UTC(2001, 1, 3, 0, 0, 0)).getTime());
-  });
-
-  afterEach('', () => {
-    clock.restore();
-  });
-
   context('with invalid value', () => {
     it('returns empty string', () => {
       expect(getExpiryDate(null)).to.eql('');
@@ -30,14 +20,6 @@ describe('getExpiryDate', () => {
 });
 
 describe('getSessionData', () => {
-  beforeEach('', () => {
-    clock = sinon.useFakeTimers(new Date(Date.UTC(2001, 1, 3, 0, 0, 0)).getTime());
-  });
-
-  afterEach('', () => {
-    clock.restore();
-  });
-
   context('with no refresh token', () => {
     it('returns the relevant attributes', () => {
       const body = {

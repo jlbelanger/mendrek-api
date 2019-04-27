@@ -28,13 +28,25 @@ export default class Session {
   /**
    * @description Updates an existing session.
    * @param {string} oldAccessToken
-   * @param {string} newAccessToken
+   * @param {Object} newData
    * @returns {Promise}
    */
-  static update(oldAccessToken, newAccessToken) {
+  static update(oldAccessToken, newData) {
     return db(table)
       .where('access_token', '=', oldAccessToken)
-      .update({ access_token: newAccessToken })
+      .update(newData)
+      .limit(1);
+  }
+
+  /**
+   * @description Deletes an existing session.
+   * @param {string} accessToken
+   * @returns {Promise}
+   */
+  static delete(accessToken) {
+    return db(table)
+      .where('access_token', '=', accessToken)
+      .del()
       .limit(1);
   }
 }

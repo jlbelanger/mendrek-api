@@ -26,7 +26,7 @@ export default class Spotify {
    */
   static request(req, res, promise) {
     if (Spotify.authenticateRequest(req, res)) {
-      promise().then(response => sendSuccess(res, response))
+      promise().then(response => sendSuccess(res, response.body))
         .catch(response => sendError(res, response));
     }
   }

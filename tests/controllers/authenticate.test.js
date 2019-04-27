@@ -3,12 +3,28 @@ import chaiHttp from 'chai-http';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
 import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 import app from '../../app';
+import Authenticate from '../../controllers/authenticate';
 import { mockApp, mockDatabase, mockSpotify } from '../helper';
 
 const expect = chai.expect;
 
+let url;
+let cookies = [];
+let mockReq = {
+  header: () => null,
+  query: {
+    token: null,
+  },
+};
+const mockRes = {
+  status: sinon.spy(),
+  send: sinon.spy(),
+};
+
 chai.use(chaiHttp);
+chai.use(sinonChai);
 dotenv.config();
 
 describe('/authenticate', () => {
@@ -36,17 +52,12 @@ describe('/authenticate', () => {
   });
 });
 
-let url;
-let cookies = [];
-
 describe('/authenticate/callback', () => {
   beforeEach(() => {
     url = '/authenticate/callback';
 
     mockApp();
     mockSpotify();
-
-    return mockDatabase();
   });
 
   context('with no state param', () => {
@@ -150,7 +161,7 @@ describe('/authenticate/callback', () => {
 
           context('with valid code param', () => {
             beforeEach('', () => {
-              url = '/authenticate/callback?state=example_state&code=example_code';
+              url = '/authenticate/callback?state=example_state&code=valid_code';
             });
 
             it('redirects to the app with the access token', () => {
@@ -158,13 +169,126 @@ describe('/authenticate/callback', () => {
                 .get(url)
                 .set('cookie', cookies)
                 .end((_, res) => {
-                  const redirectUrl = `${process.env.MENDREK_APP_URL}/?token=example_access_token`;
+                  const redirectUrl = `${process.env.MENDREK_APP_URL}/?token=new_access_token&expires=2001-02-03%2001%3A00%3A00`;
                   expect(res).to.redirectTo(redirectUrl);
                 });
             });
           });
         });
       });
+    });
+  });
+});
+
+describe('/authenticate/refresh', () => {
+  beforeEach(() => {
+    mockSpotify();
+  });
+
+  context('with no token', () => {
+    it('returns 401', () => (
+      Authenticate.refresh(mockReq, mockRes).then(() => {
+        expect(mockRes.status).to.have.been.calledWith(401);
+        expect(mockRes.send).to.have.been.calledWith({
+          success: false,
+          data: 'No authentication token.',
+        });
+      })
+    ));
+  });
+
+  context('with token', () => {
+    context('with invalid token', () => {
+      beforeEach(() => {
+        mockReq = {
+          header: () => 'invalid',
+        };
+      });
+
+      it('returns 401', () => (
+        Authenticate.refresh(mockReq, mockRes).then(() => {
+          expect(mockRes.status).to.have.been.calledWith(401);
+          expect(mockRes.send).to.have.been.calledWith({
+            success: false,
+            data: 'Invalid authentication token.',
+          });
+        })
+      ));
+    });
+
+    context('with valid token', () => {
+      beforeEach(() => {
+        mockReq = {
+          header: () => 'existing_access_token',
+        };
+      });
+
+      it('returns 200', () => (
+        Authenticate.refresh(mockReq, mockRes).then(() => {
+          expect(mockRes.status).to.have.been.calledWith(200);
+          expect(mockRes.send).to.have.been.calledWith({
+            success: true,
+            data: {
+              access_token: 'new_access_token',
+              expires: '2001-02-03 01:00:00',
+            },
+          });
+        })
+      ));
+    });
+  });
+});
+
+describe('/authenticate/logout', () => {
+  beforeEach(() => mockDatabase());
+
+  context('with no token', () => {
+    it('returns 401', () => (
+      Authenticate.logout(mockReq, mockRes).then(() => {
+        expect(mockRes.status).to.have.been.calledWith(401);
+        expect(mockRes.send).to.have.been.calledWith({
+          success: false,
+          data: 'No authentication token.',
+        });
+      })
+    ));
+  });
+
+  context('with token', () => {
+    context('with invalid token', () => {
+      beforeEach(() => {
+        mockReq = {
+          header: () => 'invalid',
+        };
+      });
+
+      it('returns 401', () => (
+        Authenticate.logout(mockReq, mockRes).then(() => {
+          expect(mockRes.status).to.have.been.calledWith(401);
+          expect(mockRes.send).to.have.been.calledWith({
+            success: false,
+            data: 'Invalid authentication token.',
+          });
+        })
+      ));
+    });
+
+    context('with valid token', () => {
+      beforeEach(() => {
+        mockReq = {
+          header: () => 'existing_access_token',
+        };
+      });
+
+      it('returns 200', () => (
+        Authenticate.logout(mockReq, mockRes).then(() => {
+          expect(mockRes.status).to.have.been.calledWith(200);
+          expect(mockRes.send).to.have.been.calledWith({
+            success: true,
+            data: 'Logged out.',
+          });
+        })
+      ));
     });
   });
 });

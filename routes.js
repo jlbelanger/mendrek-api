@@ -13,6 +13,8 @@ module.exports = (app) => {
 
   app.route('/authenticate').get(Authenticate.index);
   app.route('/authenticate/callback').get(Authenticate.callback);
+  app.route('/authenticate/logout').get(Authenticate.logout);
+  app.route('/authenticate/refresh').get(Authenticate.refresh);
 
   app.route('/me').get(Me.index);
   app.route('/me/playlists').get(Me.playlists);

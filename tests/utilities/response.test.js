@@ -50,12 +50,14 @@ describe('sendFile', () => {
 describe('sendSuccess', () => {
   beforeEach('', () => {
     res = {
+      status: sinon.spy(),
       send: sinon.spy(),
     };
   });
 
   it('returns a successful body', () => {
-    sendSuccess(res, { body: { foo: 'bar' } });
+    sendSuccess(res, { foo: 'bar' });
+    expect(res.status).to.have.been.calledWith(200);
     expect(res.send).to.have.been.calledWith({ success: true, data: { foo: 'bar' } });
   });
 });
