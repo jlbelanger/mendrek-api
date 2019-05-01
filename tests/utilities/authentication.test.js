@@ -2,7 +2,6 @@ import chai from 'chai';
 import { getExpiryDate, getSessionData, getToken } from '../../utilities/authentication';
 
 const expect = chai.expect;
-
 let req;
 
 describe('getExpiryDate', () => {

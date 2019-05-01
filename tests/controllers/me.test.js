@@ -1,31 +1,46 @@
 import chai from 'chai';
-import chaiHttp from 'chai-http';
-import app from '../../app';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import Me from '../../controllers/me';
+
+chai.use(sinonChai);
 
 const expect = chai.expect;
-
-chai.use(chaiHttp);
+const mockReq = {
+  header: () => null,
+  query: {
+    token: null,
+  },
+};
+const mockRes = {
+  status: sinon.spy(),
+  send: sinon.spy(),
+};
 
 describe('/me', () => {
   context('with no token', () => {
-    it('returns 401', () => {
-      chai.request(app)
-        .get('/me')
-        .end((_, res) => {
-          expect(res).to.have.status(401);
+    it('returns 401', () => (
+      Me.index(mockReq, mockRes).then(() => {
+        expect(mockRes.status).to.have.been.calledWith(401);
+        expect(mockRes.send).to.have.been.calledWith({
+          success: false,
+          data: 'No authentication token.',
         });
-    });
+      })
+    ));
   });
 });
 
 describe('/me/playlists', () => {
   context('with no token', () => {
-    it('returns 401', () => {
-      chai.request(app)
-        .get('/me/playlists')
-        .end((_, res) => {
-          expect(res).to.have.status(401);
+    it('returns 401', () => (
+      Me.playlists(mockReq, mockRes).then(() => {
+        expect(mockRes.status).to.have.been.calledWith(401);
+        expect(mockRes.send).to.have.been.calledWith({
+          success: false,
+          data: 'No authentication token.',
         });
-    });
+      })
+    ));
   });
 });

@@ -9,7 +9,6 @@ import Authenticate from '../../controllers/authenticate';
 import { mockApp, mockDatabase, mockSpotify } from '../helper';
 
 const expect = chai.expect;
-
 let url;
 let cookies = [];
 let mockReq = {

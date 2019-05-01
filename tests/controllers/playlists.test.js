@@ -1,43 +1,60 @@
 import chai from 'chai';
-import chaiHttp from 'chai-http';
-import app from '../../app';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import Playlists from '../../controllers/playlists';
+
+chai.use(sinonChai);
 
 const expect = chai.expect;
+const mockReq = {
+  header: () => null,
+  query: {
+    token: null,
+  },
+};
+const mockRes = {
+  status: sinon.spy(),
+  send: sinon.spy(),
+};
 
-chai.use(chaiHttp);
-
-describe('/playlists/foo.csv', () => {
+describe('/playlists/:id', () => {
   context('with no token', () => {
-    it('returns 401', () => {
-      chai.request(app)
-        .get('/playlists/foo.csv')
-        .end((_, res) => {
-          expect(res).to.have.status(401);
+    it('returns 401', () => (
+      Playlists.show(mockReq, mockRes).then(() => {
+        expect(mockRes.status).to.have.been.calledWith(401);
+        expect(mockRes.send).to.have.been.calledWith({
+          success: false,
+          data: 'No authentication token.',
         });
-    });
+      })
+    ));
   });
 });
 
-describe('/playlists/foo.json', () => {
+describe('/playlists/:id.csv', () => {
   context('with no token', () => {
-    it('returns 401', () => {
-      chai.request(app)
-        .get('/playlists/foo.json')
-        .end((_, res) => {
-          expect(res).to.have.status(401);
+    it('returns 401', () => (
+      Playlists.csv(mockReq, mockRes).then(() => {
+        expect(mockRes.status).to.have.been.calledWith(401);
+        expect(mockRes.send).to.have.been.calledWith({
+          success: false,
+          data: 'No authentication token.',
         });
-    });
+      })
+    ));
   });
 });
 
-describe('/playlists/foo', () => {
+describe('/playlists/:id.json', () => {
   context('with no token', () => {
-    it('returns 401', () => {
-      chai.request(app)
-        .get('/playlists/foo')
-        .end((_, res) => {
-          expect(res).to.have.status(401);
+    it('returns 401', () => (
+      Playlists.json(mockReq, mockRes).then(() => {
+        expect(mockRes.status).to.have.been.calledWith(401);
+        expect(mockRes.send).to.have.been.calledWith({
+          success: false,
+          data: 'No authentication token.',
         });
-    });
+      })
+    ));
   });
 });

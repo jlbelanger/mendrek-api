@@ -7,29 +7,39 @@
  */
 export function sendError(res, response, status) {
   let sendStatus = status;
-  if (!sendStatus && response.statusCode) {
-    sendStatus = response.statusCode;
+  if (!sendStatus) {
+    if (response.statusCode) {
+      sendStatus = response.statusCode;
+    } else {
+      sendStatus = 401;
+    }
   }
+
+  let data = response;
+  if (response instanceof Error) {
+    data = response.message;
+  }
+
   res.status(sendStatus);
   res.send({
     success: false,
-    data: response,
+    data,
   });
+
   return Promise.resolve();
 }
 
 /**
  * @description Returns a file.
  * @param {Object} res
- * @param {Object} response
  * @param {string} filename
- * @param {function} outputCallback
+ * @param {Object} data
  * @returns {Promise}
  */
-export function sendFile(res, response, filename, outputCallback) {
+export function sendFile(res, filename, data) {
   res.set('Content-Disposition', `attachment; filename=${filename}`);
   res.set('Content-Type', 'application/octet-stream');
-  res.send(outputCallback(response));
+  res.send(data);
   return Promise.resolve();
 }
 

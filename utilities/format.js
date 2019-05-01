@@ -32,7 +32,7 @@ export function json(data) {
       name: item.track.name,
       artist: item.track.artists.map(artist => artist.name).join(', '),
       album: item.track.album.name,
-      year: item.track.album.release_date ? item.track.album.release_date.slice(0, 4) : null,
+      year: item.track.album.release_date ? item.track.album.release_date.slice(0, 4) : '',
     }
   ));
   return JSON.stringify(output, null, 2);
