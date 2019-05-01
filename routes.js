@@ -1,4 +1,4 @@
-import Album from './controllers/albums';
+import Albums from './controllers/albums';
 import Authenticate from './controllers/authenticate';
 import Index from './controllers/index';
 import Me from './controllers/me';
@@ -12,7 +12,7 @@ import { sendError } from './utilities/response';
 module.exports = (app) => {
   app.route('/').get(Index.index);
 
-  app.route('/albums/:id').get(Album.show);
+  app.route('/albums/:id').get(Albums.show);
 
   app.route('/authenticate').get(Authenticate.index);
   app.route('/authenticate/callback').get(Authenticate.callback);
