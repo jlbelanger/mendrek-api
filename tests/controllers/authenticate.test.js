@@ -8,6 +8,10 @@ import app from '../../app';
 import Authenticate from '../../controllers/authenticate';
 import { mockApp, mockDatabase, mockSpotify } from '../helper';
 
+chai.use(chaiHttp);
+chai.use(sinonChai);
+dotenv.config();
+
 const expect = chai.expect;
 let url;
 let cookies = [];
@@ -18,13 +22,9 @@ let mockReq = {
   },
 };
 const mockRes = {
-  status: sinon.spy(),
   send: sinon.spy(),
+  status: sinon.spy(),
 };
-
-chai.use(chaiHttp);
-chai.use(sinonChai);
-dotenv.config();
 
 describe('/authenticate', () => {
   beforeEach(mockSpotify);

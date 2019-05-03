@@ -26,7 +26,5 @@ module.exports = (app) => {
   app.route('/playlists/:id.json').get(Playlists.json);
   app.route('/playlists/:id').get(Playlists.show);
 
-  app.use((req, res) => {
-    sendError(res, 'Not found.', 404);
-  });
+  app.use((req, res) => sendError(res, 'Not found.', 404));
 };

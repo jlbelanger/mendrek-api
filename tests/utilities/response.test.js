@@ -7,8 +7,9 @@ chai.use(sinonChai);
 
 const expect = chai.expect;
 const mockRes = {
-  status: sinon.spy(),
   send: sinon.spy(),
+  set: sinon.spy(),
+  status: sinon.spy(),
 };
 
 describe('sendError', () => {
@@ -24,7 +25,7 @@ describe('sendError', () => {
 });
 
 describe('sendFile', () => {
-  it('returns the output from the callback', () => {
+  it('returns the data', () => {
     sendFile(mockRes, 'example.txt', { example: true });
     expect(mockRes.send).to.have.been.calledWith({ example: true });
   });

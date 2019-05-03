@@ -1,29 +1,25 @@
 import chai from 'chai';
-import chaiHttp from 'chai-http';
-import app from '../../app';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import Index from '../../controllers/index';
+
+chai.use(sinonChai);
 
 const expect = chai.expect;
-
-chai.use(chaiHttp);
+const mockReq = {};
+const mockRes = {
+  send: sinon.spy(),
+  status: sinon.spy(),
+};
 
 describe('/', () => {
-  it('returns 200', () => {
-    chai.request(app)
-      .get('/')
-      .end((_, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body).to.be.eql({ success: true });
+  it('returns 200', () => (
+    Index.index(mockReq, mockRes).then(() => {
+      expect(mockRes.status).to.have.been.calledWith(200);
+      expect(mockRes.send).to.have.been.calledWith({
+        success: true,
+        data: null,
       });
-  });
-});
-
-describe('/404', () => {
-  it('returns 404', () => {
-    chai.request(app)
-      .get('/404')
-      .end((_, res) => {
-        expect(res).to.have.status(404);
-        expect(res.body).to.be.eql({ success: false, data: 'Not found.' });
-      });
-  });
+    })
+  ));
 });
