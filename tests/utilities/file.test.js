@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { csv, json } from '../../utilities/format';
+import { csv, json } from '../../utilities/file';
 
 const expect = chai.expect;
 const data = {
