@@ -2,7 +2,10 @@ import chai from 'chai';
 import { getExpiryDate, getSessionData, getToken } from '../../utilities/authentication';
 
 const expect = chai.expect;
-let req;
+const mockReq = {
+  header: () => null,
+  query: {},
+};
 
 describe('getExpiryDate', () => {
   context('with invalid value', () => {
@@ -52,43 +55,29 @@ describe('getSessionData', () => {
 
 describe('getToken', () => {
   context('with no token', () => {
-    beforeEach('', () => {
-      req = {
-        header: () => null,
-        query: {},
-      };
-    });
-
     it('returns empty string', () => {
-      expect(getToken(req)).to.eql('');
+      expect(getToken(mockReq)).to.eql('');
     });
   });
 
   context('with token in the header', () => {
-    beforeEach('', () => {
-      req = {
-        header: name => (name === 'Authentication' ? 'foo' : null),
-        query: {},
-      };
+    beforeEach(() => {
+      mockReq.header = name => (name === 'Authentication' ? 'foo' : null);
     });
 
     it('returns the token', () => {
-      expect(getToken(req)).to.eql('foo');
+      expect(getToken(mockReq)).to.eql('foo');
     });
   });
 
   context('with token in the query parameters', () => {
-    beforeEach('', () => {
-      req = {
-        header: () => null,
-        query: {
-          token: 'foo',
-        },
-      };
+    beforeEach(() => {
+      mockReq.header = () => null;
+      mockReq.query.token = 'foo';
     });
 
     it('returns the token', () => {
-      expect(getToken(req)).to.eql('foo');
+      expect(getToken(mockReq)).to.eql('foo');
     });
   });
 });

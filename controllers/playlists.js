@@ -1,6 +1,7 @@
-import { csv, json } from '../utilities/file';
 import Spotify from '../utilities/spotify';
 import spotifyClient from '../spotify-client';
+import { csv, json } from '../utilities/file';
+import { formatPlaylist } from '../utilities/format';
 import { sendError, sendFile, sendSuccess } from '../utilities/response';
 
 /**
@@ -12,7 +13,7 @@ import { sendError, sendFile, sendSuccess } from '../utilities/response';
 exports.show = (req, res) => (
   Spotify.authenticate(req)
     .then(() => spotifyClient.getPlaylist(req.params.id))
-    .then(response => sendSuccess(res, response.body))
+    .then(response => sendSuccess(res, formatPlaylist(response.body)))
     .catch(response => sendError(res, response))
 );
 

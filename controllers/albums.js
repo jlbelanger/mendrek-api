@@ -1,5 +1,6 @@
 import Spotify from '../utilities/spotify';
 import spotifyClient from '../spotify-client';
+import { formatAlbum } from '../utilities/format';
 import { sendError, sendSuccess } from '../utilities/response';
 
 /**
@@ -11,6 +12,6 @@ import { sendError, sendSuccess } from '../utilities/response';
 exports.show = (req, res) => (
   Spotify.authenticate(req)
     .then(() => spotifyClient.getAlbum(req.params.id))
-    .then(response => sendSuccess(res, response.body))
+    .then(response => sendSuccess(res, formatAlbum(response.body, true)))
     .catch(response => sendError(res, response))
 );

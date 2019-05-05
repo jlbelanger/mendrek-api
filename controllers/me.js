@@ -1,5 +1,6 @@
 import Spotify from '../utilities/spotify';
 import spotifyClient from '../spotify-client';
+import { formatPlaylists, formatUser } from '../utilities/format';
 import { sendError, sendSuccess } from '../utilities/response';
 
 /**
@@ -11,7 +12,7 @@ import { sendError, sendSuccess } from '../utilities/response';
 exports.index = (req, res) => (
   Spotify.authenticate(req)
     .then(() => spotifyClient.getMe())
-    .then(response => sendSuccess(res, response.body))
+    .then(response => sendSuccess(res, formatUser(response.body)))
     .catch(response => sendError(res, response))
 );
 
@@ -24,6 +25,6 @@ exports.index = (req, res) => (
 exports.playlists = (req, res) => (
   Spotify.authenticate(req)
     .then(() => spotifyClient.getUserPlaylists())
-    .then(response => sendSuccess(res, response.body))
+    .then(response => sendSuccess(res, formatPlaylists(response.body)))
     .catch(response => sendError(res, response))
 );

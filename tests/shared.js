@@ -22,7 +22,6 @@ const mockRes = {
 exports.shouldCheckAccessToken = (promise, params) => {
   beforeEach(() => {
     mockReq.params = params;
-
     mockSpotify();
   });
 
@@ -30,6 +29,11 @@ exports.shouldCheckAccessToken = (promise, params) => {
     it('returns 401', () => (
       promise(mockReq, mockRes).then(() => {
         expect(mockRes.status).to.have.been.calledWith(401);
+      })
+    ));
+
+    it('returns error message', () => (
+      promise(mockReq, mockRes).then(() => {
         expect(mockRes.send).to.have.been.calledWith({
           success: false,
           data: 'No authentication token.',
@@ -41,27 +45,21 @@ exports.shouldCheckAccessToken = (promise, params) => {
   context('with invalid token', () => {
     beforeEach(() => {
       mockReq.header = () => 'Bearer invalid';
+      mockReq.query.token = 'invalid';
     });
 
     it('returns 401', () => (
       promise(mockReq, mockRes).then(() => {
         expect(mockRes.status).to.have.been.calledWith(401);
+      })
+    ));
+
+    it('returns error message', () => (
+      promise(mockReq, mockRes).then(() => {
         expect(mockRes.send).to.have.been.calledWith({
           success: false,
           data: 'Unauthorized',
         });
-      })
-    ));
-  });
-
-  context('with valid token', () => {
-    beforeEach(() => {
-      mockReq.header = () => 'Bearer existing_access_token';
-    });
-
-    it('returns 401', () => (
-      promise(mockReq, mockRes).then(() => {
-        expect(mockRes.status).to.have.been.calledWith(200);
       })
     ));
   });

@@ -12,14 +12,21 @@ const mockRes = {
   status: sinon.spy(),
 };
 
-describe('/', () => {
-  it('returns 200', () => (
-    Index.index(mockReq, mockRes).then(() => {
-      expect(mockRes.status).to.have.been.calledWith(200);
-      expect(mockRes.send).to.have.been.calledWith({
-        success: true,
-        data: null,
-      });
-    })
-  ));
+describe('Index', () => {
+  describe('index', () => {
+    it('returns 200', () => (
+      Index.index(mockReq, mockRes).then(() => {
+        expect(mockRes.status).to.have.been.calledWith(200);
+      })
+    ));
+
+    it('returns response', () => (
+      Index.index(mockReq, mockRes).then(() => {
+        expect(mockRes.send).to.have.been.calledWith({
+          success: true,
+          data: null,
+        });
+      })
+    ));
+  });
 });

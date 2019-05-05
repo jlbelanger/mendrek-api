@@ -1,0 +1,80 @@
+{
+    "href": "https://api.spotify.com/v1/users/example/playlists?offset=0&limit=20",
+    "items": [
+        {
+            "collaborative": false,
+            "external_urls": {
+                "spotify": "https://open.spotify.com/playlist/aaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "href": "https://api.spotify.com/v1/playlists/aaaaaaaaaaaaaaaaaaaaaa",
+            "id": "aaaaaaaaaaaaaaaaaaaaaa",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "width": 640
+                }
+            ],
+            "name": "Motown",
+            "owner": {
+                "display_name": "example",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/user/example"
+                },
+                "href": "https://api.spotify.com/v1/users/example",
+                "id": "example",
+                "type": "user",
+                "uri": "spotify:user:example"
+            },
+            "primary_color": null,
+            "public": false,
+            "snapshot_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "tracks": {
+                "href": "https://api.spotify.com/v1/playlists/aaaaaaaaaaaaaaaaaaaaaa/tracks",
+                "total": 9
+            },
+            "type": "playlist",
+            "uri": "spotify:playlist:aaaaaaaaaaaaaaaaaaaaaa"
+        },
+        {
+            "collaborative": false,
+            "external_urls": {
+                "spotify": "https://open.spotify.com/playlist/bbbbbbbbbbbbbbbbbbbbbb"
+            },
+            "href": "https://api.spotify.com/v1/playlists/bbbbbbbbbbbbbbbbbbbbbb",
+            "id": "bbbbbbbbbbbbbbbbbbbbbb",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                    "width": 640
+                }
+            ],
+            "name": "Bubblegum",
+            "owner": {
+                "display_name": "example",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/user/example"
+                },
+                "href": "https://api.spotify.com/v1/users/example",
+                "id": "example",
+                "type": "user",
+                "uri": "spotify:user:example"
+            },
+            "primary_color": null,
+            "public": false,
+            "snapshot_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "tracks": {
+                "href": "https://api.spotify.com/v1/playlists/bbbbbbbbbbbbbbbbbbbbbb/tracks",
+                "total": 4
+            },
+            "type": "playlist",
+            "uri": "spotify:playlist:bbbbbbbbbbbbbbbbbbbbbb"
+        }
+    ],
+    "limit": 20,
+    "next": "https://api.spotify.com/v1/users/example/playlists?offset=20&limit=20",
+    "offset": 0,
+    "previous": null,
+    "total": 2
+}

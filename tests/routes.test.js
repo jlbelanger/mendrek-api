@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 const expect = chai.expect;
 
-describe('/404', () => {
+describe('404', () => {
   it('returns 404', () => {
     chai.request(app)
       .get('/404')
