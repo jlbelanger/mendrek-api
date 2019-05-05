@@ -10,6 +10,21 @@ export function formatAlbum(album, includeTracks) {
   return output;
 }
 
+export function formatArtist(artist, albums) {
+  const output = {
+    id: artist.id,
+    name: artist.name,
+    tracks: [],
+  };
+  albums.forEach((album) => {
+    album.body.albums.forEach((a) => {
+      // eslint-disable-next-line no-use-before-define
+      output.tracks = output.tracks.concat(formatTracks(a, a.tracks));
+    });
+  });
+  return output;
+}
+
 export function formatPlaylist(playlist) {
   return {
     id: playlist.id,

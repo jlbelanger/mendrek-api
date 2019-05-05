@@ -41,7 +41,7 @@ describe('Albums', () => {
               id: '618fk3ITH2nXQtT0nTTZ84',
               name: 'Good Times!',
               release_date: '2016-05-27',
-              tracks: sinon.match.array,
+              tracks: [sinon.match.object, sinon.match.object],
             },
           }));
         })

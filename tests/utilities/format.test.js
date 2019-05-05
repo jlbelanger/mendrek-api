@@ -1,12 +1,15 @@
 import chai from 'chai';
 import {
   formatAlbum,
+  formatArtist,
   formatPlaylist,
   formatPlaylists,
   formatTracks,
   formatUser,
 } from '../../utilities/format';
+import artistData from '../data/v1/artists/foo.json';
 import albumData from '../data/v1/albums/foo.json';
+import albumSearchData from '../data/v1/albums/search.json';
 import playlistData from '../data/v1/playlists/foo.json';
 import playlistsData from '../data/v1/me/playlists.json';
 import userData from '../data/v1/me.json';
@@ -66,6 +69,48 @@ describe('formatAlbum', () => {
       };
       expect(formatAlbum(albumData, false)).to.eql(expected);
     });
+  });
+});
+
+describe('formatArtist', () => {
+  it('returns relevant artist fields', () => {
+    const expected = {
+      id: '320EPCSEezHt1rtbfwH6Ck',
+      name: 'The Monkees',
+      tracks: [
+        {
+          id: '3MGZYMyQQ1bR6Koeydw7nE',
+          name: 'Good Times',
+          artists: [
+            {
+              id: '320EPCSEezHt1rtbfwH6Ck',
+              name: 'The Monkees',
+            },
+          ],
+          album: {
+            id: '618fk3ITH2nXQtT0nTTZ84',
+            name: 'Good Times!',
+            release_date: '2016-05-27',
+          },
+        },
+        {
+          id: '5WsTyr4yoElATvkio72fP7',
+          name: 'You Bring the Summer',
+          artists: [
+            {
+              id: '320EPCSEezHt1rtbfwH6Ck',
+              name: 'The Monkees',
+            },
+          ],
+          album: {
+            id: '618fk3ITH2nXQtT0nTTZ84',
+            name: 'Good Times!',
+            release_date: '2016-05-27',
+          },
+        },
+      ],
+    };
+    expect(formatArtist(artistData, [{ body: albumSearchData }])).to.eql(expected);
   });
 });
 

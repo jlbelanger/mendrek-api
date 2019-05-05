@@ -2,7 +2,11 @@
 import dotenv from 'dotenv';
 import nock from 'nock';
 import db from '../db';
+import artistData from './data/v1/artists/foo.json';
+import artistAlbumsData from './data/v1/artists/foo/albums.json';
+import artistManyAlbumsData from './data/v1/artists/foo-many-albums/albums.json';
 import albumData from './data/v1/albums/foo.json';
+import albumSearchData from './data/v1/albums/search.json';
 import meData from './data/v1/me.json';
 import mePlaylistsData from './data/v1/me/playlists.json';
 import playlistData from './data/v1/playlists/foo.json';
@@ -53,6 +57,18 @@ export function mockSpotify() {
 
   api.get(/^\/v1\/albums\/\w+/)
     .reply(() => [200, albumData]);
+
+  api.get(/^\/v1\/albums\?.+/)
+    .reply(() => [200, albumSearchData]);
+
+  api.get(/^\/v1\/artists\/foo-many-albums\/albums/)
+    .reply(() => [200, artistManyAlbumsData]);
+
+  api.get(/^\/v1\/artists\/foo\/albums/)
+    .reply(() => [200, artistAlbumsData]);
+
+  api.get(/^\/v1\/artists\/\w+/)
+    .reply(() => [200, artistData]);
 
   api.get('/v1/me/playlists')
     .reply(() => [200, mePlaylistsData]);

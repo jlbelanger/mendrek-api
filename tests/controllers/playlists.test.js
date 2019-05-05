@@ -40,7 +40,7 @@ describe('Playlists', () => {
             data: {
               id: 'aaaaaaaaaaaaaaaaaaaaaa',
               name: 'Songs Covered by The Monkees',
-              tracks: sinon.match.array,
+              tracks: [sinon.match.object, sinon.match.object],
             },
           }));
         })
