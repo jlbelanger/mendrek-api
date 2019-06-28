@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.nyc_output
+db
+lib
+node_modules
+run
+TODO.md
