@@ -29,7 +29,7 @@ All other commands should be run in the `mendrek-api` folder.
 ### Configure environment settings
 
 ```
-cp .env.sample .env
+cp .env.example .env
 ```
 
 Copy the Client ID and Client Secret from your Spotify application into `.env`.
