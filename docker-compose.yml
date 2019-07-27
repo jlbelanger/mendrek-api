@@ -2,21 +2,25 @@ version: "3"
 
 services:
   web:
-    container_name: web
     build: .
+    container_name: mendrek
+    depends_on:
+      - mendrek_db
     ports:
       - 5309:5309
     volumes:
       - .:/usr/src/app
-    tty: true
   db:
-    container_name: db
+    command: "--default-authentication-plugin=mysql_native_password --sql_mode='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'"
+    container_name: mendrek_db
     image: mysql:5.7.24
-    command: "--default-authentication-plugin=mysql_native_password"
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - 3306:3306
     volumes:
-      - ./db:/var/lib/mysql
+      - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data: {}

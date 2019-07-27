@@ -55,7 +55,7 @@ To check if it's working, go to http://localhost:5309/. You should see `{"succes
 In a new window:
 
 ```
-docker exec -i -t web /bin/bash -c 'knex migrate:latest'
+docker exec -i -t mendrek /bin/bash -c 'knex migrate:latest'
 ```
 
 ### Setup the app
@@ -74,5 +74,5 @@ See [Mendrek app](https://github.com/jlbelanger/mendrek-app).
 ### Running tests
 
 ```
-docker exec -i -t web /bin/bash -c 'npm test'
+docker exec -i -t mendrek /bin/bash -c 'npm test'
 ```

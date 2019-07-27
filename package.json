@@ -14,9 +14,10 @@
   },
   "scripts": {
     "start": "node_modules/.bin/babel-node ./bin/www",
-    "lint": "node_modules/.bin/eslint .",
+    "lint": "npm run lint:js",
+    "lint:js": "node_modules/.bin/eslint .",
     "pretest": "npm run lint",
-    "test": "docker exec -i -t web /bin/bash -c 'NODE_ENV=test node_modules/.bin/mocha ./tests --recursive --require start-test.js --exit'"
+    "test": "NODE_ENV=test node_modules/.bin/mocha ./tests --recursive --require start-test.js --exit"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
