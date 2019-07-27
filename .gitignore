@@ -4,5 +4,6 @@
 db
 lib
 node_modules
+public/google*.html
 run
 TODO.md
