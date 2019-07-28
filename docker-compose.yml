@@ -5,7 +5,7 @@ services:
     build: .
     container_name: mendrek
     depends_on:
-      - mendrek_db
+      - db
     ports:
       - 5309:5309
     volumes:
