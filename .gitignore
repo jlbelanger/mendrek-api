@@ -3,6 +3,5 @@
 .nyc_output
 lib
 node_modules
-public/google*.html
 run
 TODO.md
