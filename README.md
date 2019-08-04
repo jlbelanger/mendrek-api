@@ -62,6 +62,13 @@ docker exec -i -t mendrek /bin/bash -c 'knex migrate:latest'
 
 See [Mendrek app](https://github.com/jlbelanger/mendrek-app).
 
+## Deploying
+
+```
+npm install -g pm2
+pm2 start app.js
+```
+
 ## Helpful development stuff
 
 ### Connecting to the database
