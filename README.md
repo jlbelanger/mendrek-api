@@ -66,7 +66,7 @@ See [Mendrek app](https://github.com/jlbelanger/mendrek-app).
 
 ```
 npm install -g pm2
-pm2 start app.js
+pm2 start npm --name "mendrek-api" -- start
 ```
 
 ## Helpful development stuff
