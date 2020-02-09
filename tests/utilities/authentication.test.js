@@ -1,21 +1,13 @@
 import chai from 'chai';
-import sinon from 'sinon';
 import { getExpiryDate, getSessionData, getToken } from '../../utilities/authentication';
 
 const expect = chai.expect;
-
-let clock;
-let req;
+const mockReq = {
+  header: () => null,
+  query: {},
+};
 
 describe('getExpiryDate', () => {
-  beforeEach('', () => {
-    clock = sinon.useFakeTimers(new Date(Date.UTC(2001, 1, 3, 0, 0, 0)).getTime());
-  });
-
-  afterEach('', () => {
-    clock.restore();
-  });
-
   context('with invalid value', () => {
     it('returns empty string', () => {
       expect(getExpiryDate(null)).to.eql('');
@@ -30,14 +22,6 @@ describe('getExpiryDate', () => {
 });
 
 describe('getSessionData', () => {
-  beforeEach('', () => {
-    clock = sinon.useFakeTimers(new Date(Date.UTC(2001, 1, 3, 0, 0, 0)).getTime());
-  });
-
-  afterEach('', () => {
-    clock.restore();
-  });
-
   context('with no refresh token', () => {
     it('returns the relevant attributes', () => {
       const body = {
@@ -71,43 +55,29 @@ describe('getSessionData', () => {
 
 describe('getToken', () => {
   context('with no token', () => {
-    beforeEach('', () => {
-      req = {
-        header: () => null,
-        query: {},
-      };
-    });
-
     it('returns empty string', () => {
-      expect(getToken(req)).to.eql('');
+      expect(getToken(mockReq)).to.eql('');
     });
   });
 
   context('with token in the header', () => {
-    beforeEach('', () => {
-      req = {
-        header: name => (name === 'Authentication' ? 'foo' : null),
-        query: {},
-      };
+    beforeEach(() => {
+      mockReq.header = name => (name === 'Authentication' ? 'foo' : null);
     });
 
     it('returns the token', () => {
-      expect(getToken(req)).to.eql('foo');
+      expect(getToken(mockReq)).to.eql('foo');
     });
   });
 
   context('with token in the query parameters', () => {
-    beforeEach('', () => {
-      req = {
-        header: () => null,
-        query: {
-          token: 'foo',
-        },
-      };
+    beforeEach(() => {
+      mockReq.header = () => null;
+      mockReq.query.token = 'foo';
     });
 
     it('returns the token', () => {
-      expect(getToken(req)).to.eql('foo');
+      expect(getToken(mockReq)).to.eql('foo');
     });
   });
 });

@@ -6,56 +6,40 @@ import { sendError, sendFile, sendSuccess } from '../../utilities/response';
 chai.use(sinonChai);
 
 const expect = chai.expect;
-
-let res;
+const mockRes = {
+  send: sinon.spy(),
+  set: sinon.spy(),
+  status: sinon.spy(),
+};
 
 describe('sendError', () => {
-  beforeEach('', () => {
-    res = {
-      status: sinon.spy(),
-      send: sinon.spy(),
-    };
-  });
-
   it('sends an error status code', () => {
-    sendError(res, { foo: 'bar' }, 500);
-    expect(res.status).to.have.been.calledWith(500);
+    sendError(mockRes, { foo: 'bar' }, 500);
+    expect(mockRes.status).to.have.been.calledWith(500);
   });
 
   it('returns an unsuccessful body', () => {
-    sendError(res, { foo: 'bar' }, 500);
-    expect(res.send).to.have.been.calledWith({ success: false, data: { foo: 'bar' } });
+    sendError(mockRes, { foo: 'bar' }, 500);
+    expect(mockRes.send).to.have.been.calledWith({ success: false, data: { foo: 'bar' } });
   });
 });
 
 describe('sendFile', () => {
-  beforeEach('', () => {
-    res = {
-      set: sinon.spy(),
-      send: sinon.spy(),
-    };
-  });
-
-  it('returns the output from the callback', () => {
-    sendFile(res, null, 'example.txt', () => ({ example: true }));
-    expect(res.send).to.have.been.calledWith({ example: true });
+  it('returns the data', () => {
+    sendFile(mockRes, 'example.txt', { example: true });
+    expect(mockRes.send).to.have.been.calledWith({ example: true });
   });
 
   it('sets the filename', () => {
-    sendFile(res, null, 'example.txt', () => ({ example: true }));
-    expect(res.set).to.have.been.calledWith('Content-Disposition', 'attachment; filename=example.txt');
+    sendFile(mockRes, 'example.txt', { example: true });
+    expect(mockRes.set).to.have.been.calledWith('Content-Disposition', 'attachment; filename=example.txt');
   });
 });
 
 describe('sendSuccess', () => {
-  beforeEach('', () => {
-    res = {
-      send: sinon.spy(),
-    };
-  });
-
   it('returns a successful body', () => {
-    sendSuccess(res, { body: { foo: 'bar' } });
-    expect(res.send).to.have.been.calledWith({ success: true, data: { foo: 'bar' } });
+    sendSuccess(mockRes, { foo: 'bar' });
+    expect(mockRes.status).to.have.been.calledWith(200);
+    expect(mockRes.send).to.have.been.calledWith({ success: true, data: { foo: 'bar' } });
   });
 });

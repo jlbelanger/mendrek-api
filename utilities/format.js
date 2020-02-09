@@ -1,39 +1,74 @@
-/**
- * @description Formats a list of tracks in CSV format.
- * @param {Object} data
- * @returns {string}
- */
-export function csv(data) {
-  let output = data.body.tracks.items;
-  output = output.map(item => (
-    [
-      item.track.id,
-      item.track.name,
-      item.track.artists.map(artist => artist.name).join(', '),
-      item.track.album.name,
-      item.track.album.release_date ? item.track.album.release_date.slice(0, 4) : null,
-    ]
-      .map(i => (i ? `"${i.replace('"', '\\"')}"` : ''))
-      .join(',')
-  ));
-  output.unshift('ID,Name,Artist,Album,Year');
-  return output.join('\n');
+export function formatAlbum(album, includeTracks) {
+  const output = {
+    id: album.id,
+    name: album.name,
+    release_date: album.release_date,
+  };
+  if (includeTracks) {
+    output.tracks = formatTracks(album, album.tracks); // eslint-disable-line no-use-before-define
+  }
+  return output;
 }
 
-/**
- * @description Formats a list of tracks in JSON format.
- * @param {Object} data
- * @returns {string}
- */
-export function json(data) {
-  const output = data.body.tracks.items.map(item => (
+export function formatArtist(artist, albums) {
+  const output = {
+    id: artist.id,
+    name: artist.name,
+    tracks: [],
+  };
+  albums.forEach((album) => {
+    album.body.albums.forEach((a) => {
+      // eslint-disable-next-line no-use-before-define
+      output.tracks = output.tracks.concat(formatTracks(a, a.tracks));
+    });
+  });
+  return output;
+}
+
+export function formatPlaylist(playlist) {
+  return {
+    id: playlist.id,
+    name: playlist.name,
+    tracks: formatTracks(null, playlist.tracks), // eslint-disable-line no-use-before-define
+  };
+}
+
+export function formatPlaylists(playlists) {
+  return playlists.items.map(playlist => (
     {
-      id: item.track.id,
-      name: item.track.name,
-      artist: item.track.artists.map(artist => artist.name).join(', '),
-      album: item.track.album.name,
-      year: item.track.album.release_date ? item.track.album.release_date.slice(0, 4) : null,
+      id: playlist.id,
+      name: playlist.name,
     }
   ));
-  return JSON.stringify(output, null, 2);
+}
+
+export function formatTracks(album, tracks) {
+  return tracks.items.map((t) => {
+    let track = t;
+    if (t.track) {
+      track = t.track;
+    }
+    const output = {
+      id: track.id,
+      name: track.name,
+      artists: track.artists.map(trackArtist => (
+        {
+          id: trackArtist.id,
+          name: trackArtist.name,
+        }
+      )),
+    };
+    if (album) {
+      output.album = formatAlbum(album, false);
+    } else if (track.album) {
+      output.album = formatAlbum(track.album, false);
+    }
+    return output;
+  });
+}
+
+export function formatUser(user) {
+  return {
+    id: user.id,
+  };
 }
