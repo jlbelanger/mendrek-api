@@ -43,7 +43,7 @@ npm install
 ### Start the API
 
 ```
-docker-compose up --force-recreate
+docker-compose up --build
 ```
 
 Once you see the output `Listening on http://localhost:5309` from the web container and `mysqld: ready for connections` from the db container, it should be ready.
