@@ -64,9 +64,27 @@ See [Mendrek app](https://github.com/jlbelanger/mendrek-app).
 
 ## Deploying
 
+### First-time setup
+
+Locally, run:
+
+```
+cp deploy-config.sh.example deploy-config.sh
+```
+
+Set the variables in `deploy-config.sh`.
+
+On the server, you will need to set up the git repo in DEPLOY_FOLDER, then copy `.env.example` to `.env` and set the variables there. Then run:
+
 ```
 npm install -g pm2
-pm2 start npm --name "mendrek-api" -- start
+pm2 start npm --name "APP_NAME" -- start # where APP_NAME matches the value in deploy-config.sh
+```
+
+### Subsequent deploys
+
+```
+./deploy.sh
 ```
 
 ## Helpful development stuff
