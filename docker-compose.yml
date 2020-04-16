@@ -6,6 +6,15 @@ services:
     container_name: mendrek
     depends_on:
       - db
+    environment:
+      DB_CONNECTION: mysql
+      DB_DATABASE: mendrek
+      DB_HOST: db
+      DB_PASSWORD: mendrek
+      DB_USERNAME: mendrek
+      NODE_ENV: development
+      SPOTIFY_CLIENT_ID: ~
+      SPOTIFY_CLIENT_SECRET: ~
     ports:
       - 5309:5309
     volumes:
@@ -16,7 +25,7 @@ services:
     container_name: mendrek_db
     image: mysql:5.7.24
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - 3306:3306
     volumes:

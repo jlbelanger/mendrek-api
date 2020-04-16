@@ -32,7 +32,7 @@ All other commands should be run in the `mendrek-api` folder.
 cp .env.example .env
 ```
 
-Copy the Client ID and Client Secret from your Spotify application into `.env`.
+Copy the Client ID and Client Secret from your Spotify application into `docker-compose.yml`.
 
 ### Install dependencies
 
@@ -92,8 +92,8 @@ pm2 start npm --name "APP_NAME" -- start # where APP_NAME matches the value in d
 ### Connecting to the database
 
 * **Host**: 0.0.0.0
-* **Username**: root
-* **Password**: root
+* **Username**: mendrek
+* **Password**: mendrek
 * **Database**: mendrek
 
 ### Running tests
