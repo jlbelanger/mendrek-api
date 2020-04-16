@@ -34,12 +34,6 @@ cp .env.example .env
 
 Copy the Client ID and Client Secret from your Spotify application into `docker-compose.yml`.
 
-### Install dependencies
-
-``` bash
-yarn install
-```
-
 ### Start the API
 
 ``` bash
