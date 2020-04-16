@@ -27,7 +27,7 @@ printf "\n\nPulling...\n"
 ssh "$DEPLOY_HOST" "cd $DEPLOY_FOLDER; git pull"
 
 printf "\n\nUpdating packages...\n"
-ssh "$DEPLOY_HOST" "cd $DEPLOY_FOLDER; npm install"
+ssh "$DEPLOY_HOST" "cd $DEPLOY_FOLDER; yarn install"
 
 printf "\n\nRestarting...\n"
 ssh "$DEPLOY_HOST" "pm2 restart $APP_NAME"

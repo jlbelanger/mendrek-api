@@ -9,7 +9,7 @@ View the app at https://mendrek.jennybelanger.com/
 ### Install requirements
 
 * [Docker](https://www.docker.com/get-started)
-* [npm](https://www.npmjs.com/get-npm)
+* [Yarn](https://classic.yarnpkg.com/en/docs/install)
 
 ### Create a Spotify app
 
@@ -19,7 +19,7 @@ Add `http://localhost:5309/authenticate/callback` as a whitelisted Redirect URI.
 
 ### Clone the API repo
 
-```
+``` bash
 git clone https://github.com/jlbelanger/mendrek-api.git
 cd mendrek-api
 ```
@@ -28,7 +28,7 @@ All other commands should be run in the `mendrek-api` folder.
 
 ### Configure environment settings
 
-```
+``` bash
 cp .env.example .env
 ```
 
@@ -36,13 +36,13 @@ Copy the Client ID and Client Secret from your Spotify application into `docker-
 
 ### Install dependencies
 
-```
-npm install
+``` bash
+yarn install
 ```
 
 ### Start the API
 
-```
+``` bash
 docker-compose up --build
 ```
 
@@ -54,8 +54,8 @@ To check if it's working, go to http://localhost:5309/. You should see `{"succes
 
 In a new window:
 
-```
-docker exec -i -t mendrek /bin/bash -c 'knex migrate:latest'
+``` bash
+docker exec -it mendrek sh -c 'knex migrate:latest'
 ```
 
 ### Setup the app
@@ -68,7 +68,7 @@ See [Mendrek app](https://github.com/jlbelanger/mendrek-app).
 
 Locally, run:
 
-```
+``` bash
 cp deploy-config.sh.example deploy-config.sh
 ```
 
@@ -76,14 +76,14 @@ Set the variables in `deploy-config.sh`.
 
 On the server, you will need to set up the git repo in DEPLOY_FOLDER, then copy `.env.example` to `.env` and set the variables there. Then run:
 
-```
-npm install -g pm2
-pm2 start npm --name "APP_NAME" -- start # where APP_NAME matches the value in deploy-config.sh
+``` bash
+yarn global add pm2@3.5.1
+pm2 start yarn --name "APP_NAME" -- start # where APP_NAME matches the value in deploy-config.sh
 ```
 
 ### Subsequent deploys
 
-```
+``` bash
 ./deploy.sh
 ```
 
@@ -98,6 +98,6 @@ pm2 start npm --name "APP_NAME" -- start # where APP_NAME matches the value in d
 
 ### Running tests
 
-```
-docker exec -i -t mendrek /bin/bash -c 'npm test'
+``` bash
+docker exec -it mendrek sh -c 'yarn test'
 ```

@@ -14,11 +14,11 @@
   },
   "scripts": {
     "start": "node_modules/.bin/babel-node ./bin/www",
-    "lint": "npm run lint:js",
+    "lint": "yarn run lint:js",
     "lint:js": "node_modules/.bin/eslint .",
-    "pretest": "npm run lint",
+    "pretest": "yarn run lint",
     "test": "NODE_ENV=test node_modules/.bin/mocha ./tests --recursive --file start-test.js",
-    "coverage": "NODE_ENV=test ./node_modules/.bin/nyc --reporter=text npm t"
+    "coverage": "NODE_ENV=test ./node_modules/.bin/nyc --reporter=text yarn test"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
