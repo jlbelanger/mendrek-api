@@ -1,3 +1,0 @@
-export DEPLOY_FOLDER="/path/to/mendrek-api"
-export DEPLOY_HOST="username@hostname"
-export APP_NAME="mendrek-api"

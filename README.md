@@ -58,24 +58,31 @@ See [Mendrek app](https://github.com/jlbelanger/mendrek-app).
 
 ## Deploying
 
-### First-time setup
-
-Locally, run:
+Essentially, to set up the repo on the server:
 
 ``` bash
-cp deploy-config.sh.example deploy-config.sh
+git clone https://github.com/jlbelanger/mendrek-api.git
+cd mendrek-api
+cp .env.example .env
+# Then configure the values in .env.
+yarn install
+yarn global add pm2@4.4.0
+pm2 start start.js --name mendrek-api
 ```
 
-Set the variables in `deploy-config.sh`.
-
-On the server, you will need to set up the git repo in DEPLOY_FOLDER, then copy `.env.example` to `.env` and set the variables there. Then run:
+For subsequent deploys, push changes to master, then run the following on the server:
 
 ``` bash
-yarn global add pm2@3.5.1
-pm2 start yarn --name "APP_NAME" -- start # where APP_NAME matches the value in deploy-config.sh
+cd mendrek-api
+git fetch origin
+git pull
+yarn install
+pm2 restart mendrek-api
 ```
 
-### Subsequent deploys
+### Deploy script
+
+Note: The deploy script included in this repo depends on other scripts that only exist in my private repos. If you want to deploy this repo, you'll have to create your own script.
 
 ``` bash
 ./deploy.sh

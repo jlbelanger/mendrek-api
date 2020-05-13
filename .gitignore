@@ -1,7 +1,6 @@
 .DS_Store
 .env
 .nyc_output
-deploy-config.sh
 lib
 node_modules
 run
