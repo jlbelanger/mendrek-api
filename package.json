@@ -14,9 +14,9 @@
   },
   "scripts": {
     "start": "node_modules/.bin/babel-node ./bin/www",
-    "lint": "yarn run lint:js",
+    "lint": "yarn lint:js",
     "lint:js": "node_modules/.bin/eslint .",
-    "pretest": "yarn run lint",
+    "pretest": "yarn lint",
     "test": "NODE_ENV=test node_modules/.bin/mocha ./tests --recursive --file start-test.js",
     "coverage": "NODE_ENV=test ./node_modules/.bin/nyc --reporter=text yarn test"
   },
