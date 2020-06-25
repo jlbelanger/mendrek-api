@@ -1,50 +1,50 @@
 {
-    "external_urls": {
-        "spotify": "https://open.spotify.com/artist/320EPCSEezHt1rtbfwH6Ck"
-    },
-    "followers": {
-        "href": null,
-        "total": 449645
-    },
-    "genres": [
-        "brill building pop",
-        "bubblegum pop",
-        "christmas",
-        "classic rock",
-        "folk rock",
-        "mellow gold",
-        "psychedelic rock",
-        "rock",
-        "rock-and-roll",
-        "soft rock",
-        "sunshine pop"
-    ],
-    "href": "https://api.spotify.com/v1/artists/320EPCSEezHt1rtbfwH6Ck",
-    "id": "320EPCSEezHt1rtbfwH6Ck",
-    "images": [
-        {
-            "height": 1025,
-            "url": "https://i.scdn.co/image/e544a32232ce0952eb27aa70f3061164190772ab",
-            "width": 1000
-        },
-        {
-            "height": 656,
-            "url": "https://i.scdn.co/image/8bdbf17d38c11224c1b0ffaee5df35eb907fb021",
-            "width": 640
-        },
-        {
-            "height": 205,
-            "url": "https://i.scdn.co/image/c722f059807d21f410d55041177d05f5cb423695",
-            "width": 200
-        },
-        {
-            "height": 66,
-            "url": "https://i.scdn.co/image/2920f0a9c9436a0fddf8fb0764f4a8600bf52ca7",
-            "width": 64
-        }
-    ],
-    "name": "The Monkees",
-    "popularity": 66,
-    "type": "artist",
-    "uri": "spotify:artist:320EPCSEezHt1rtbfwH6Ck"
+	"external_urls": {
+		"spotify": "https://open.spotify.com/artist/320EPCSEezHt1rtbfwH6Ck"
+	},
+	"followers": {
+		"href": null,
+		"total": 449645
+	},
+	"genres": [
+		"brill building pop",
+		"bubblegum pop",
+		"christmas",
+		"classic rock",
+		"folk rock",
+		"mellow gold",
+		"psychedelic rock",
+		"rock",
+		"rock-and-roll",
+		"soft rock",
+		"sunshine pop"
+	],
+	"href": "https://api.spotify.com/v1/artists/320EPCSEezHt1rtbfwH6Ck",
+	"id": "320EPCSEezHt1rtbfwH6Ck",
+	"images": [
+		{
+			"height": 1025,
+			"url": "https://i.scdn.co/image/e544a32232ce0952eb27aa70f3061164190772ab",
+			"width": 1000
+		},
+		{
+			"height": 656,
+			"url": "https://i.scdn.co/image/8bdbf17d38c11224c1b0ffaee5df35eb907fb021",
+			"width": 640
+		},
+		{
+			"height": 205,
+			"url": "https://i.scdn.co/image/c722f059807d21f410d55041177d05f5cb423695",
+			"width": 200
+		},
+		{
+			"height": 66,
+			"url": "https://i.scdn.co/image/2920f0a9c9436a0fddf8fb0764f4a8600bf52ca7",
+			"width": 64
+		}
+	],
+	"name": "The Monkees",
+	"popularity": 66,
+	"type": "artist",
+	"uri": "spotify:artist:320EPCSEezHt1rtbfwH6Ck"
 }

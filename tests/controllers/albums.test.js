@@ -9,43 +9,43 @@ chai.use(sinonChai);
 
 const expect = chai.expect;
 const mockReq = {
-  header: () => 'Bearer existing_access_token',
-  params: {
-    id: 'foo',
-  },
+	header: () => 'Bearer existing_access_token',
+	params: {
+		id: 'foo',
+	},
 };
 const mockRes = {
-  send: sinon.spy(),
-  set: sinon.spy(),
-  status: sinon.spy(),
+	send: sinon.spy(),
+	set: sinon.spy(),
+	status: sinon.spy(),
 };
 
 describe('Albums', () => {
-  describe('show', () => {
-    shared.shouldCheckAccessToken(Albums.show, { id: 'foo' });
+	describe('show', () => {
+		shared.shouldCheckAccessToken(Albums.show, { id: 'foo' });
 
-    context('with valid token', () => {
-      beforeEach(() => mockSpotify());
+		context('with valid token', () => {
+			beforeEach(() => mockSpotify());
 
-      it('returns 200', () => (
-        Albums.show(mockReq, mockRes).then(() => {
-          expect(mockRes.status).to.have.been.calledWith(200);
-        })
-      ));
+			it('returns 200', () => (
+				Albums.show(mockReq, mockRes).then(() => {
+					expect(mockRes.status).to.have.been.calledWith(200);
+				})
+			));
 
-      it('returns response', () => (
-        Albums.show(mockReq, mockRes).then(() => {
-          expect(mockRes.send).to.have.been.calledWith(sinon.match({
-            success: true,
-            data: {
-              id: '618fk3ITH2nXQtT0nTTZ84',
-              name: 'Good Times!',
-              release_date: '2016-05-27',
-              tracks: [sinon.match.object, sinon.match.object],
-            },
-          }));
-        })
-      ));
-    });
-  });
+			it('returns response', () => (
+				Albums.show(mockReq, mockRes).then(() => {
+					expect(mockRes.send).to.have.been.calledWith(sinon.match({
+						success: true,
+						data: {
+							id: '618fk3ITH2nXQtT0nTTZ84',
+							name: 'Good Times!',
+							release_date: '2016-05-27',
+							tracks: [sinon.match.object, sinon.match.object],
+						},
+					}));
+				})
+			));
+		});
+	});
 });

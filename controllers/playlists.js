@@ -11,10 +11,10 @@ import { sendError, sendFile, sendSuccess } from '../utilities/response';
  * @returns {Promise}
  */
 exports.show = (req, res) => (
-  Spotify.authenticate(req)
-    .then(() => spotifyClient.getPlaylist(req.params.id))
-    .then(response => sendSuccess(res, formatPlaylist(response.body)))
-    .catch(response => sendError(res, response))
+	Spotify.authenticate(req)
+		.then(() => spotifyClient.getPlaylist(req.params.id))
+		.then(response => sendSuccess(res, formatPlaylist(response.body)))
+		.catch(response => sendError(res, response))
 );
 
 /**
@@ -24,13 +24,13 @@ exports.show = (req, res) => (
  * @returns {Promise}
  */
 exports.csv = (req, res) => (
-  Spotify.authenticate(req)
-    .then(() => spotifyClient.getPlaylist(req.params.id))
-    .then((response) => {
-      const filename = `mendrek-playlist-${req.params.id}.csv`;
-      return sendFile(res, filename, csv(response));
-    })
-    .catch(response => sendError(res, response))
+	Spotify.authenticate(req)
+		.then(() => spotifyClient.getPlaylist(req.params.id))
+		.then((response) => {
+			const filename = `mendrek-playlist-${req.params.id}.csv`;
+			return sendFile(res, filename, csv(response));
+		})
+		.catch(response => sendError(res, response))
 );
 
 /**
@@ -40,11 +40,11 @@ exports.csv = (req, res) => (
  * @returns {Promise}
  */
 exports.json = (req, res) => (
-  Spotify.authenticate(req)
-    .then(() => spotifyClient.getPlaylist(req.params.id))
-    .then((response) => {
-      const filename = `mendrek-playlist-${req.params.id}.json`;
-      return sendFile(res, filename, json(response));
-    })
-    .catch(response => sendError(res, response))
+	Spotify.authenticate(req)
+		.then(() => spotifyClient.getPlaylist(req.params.id))
+		.then((response) => {
+			const filename = `mendrek-playlist-${req.params.id}.json`;
+			return sendFile(res, filename, json(response));
+		})
+		.catch(response => sendError(res, response))
 );

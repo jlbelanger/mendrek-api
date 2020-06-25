@@ -6,6 +6,6 @@ import { sendSuccess } from '../utilities/response';
  * @param {Object} res
  */
 exports.index = (req, res) => (
-  Promise.resolve()
-    .then(() => sendSuccess(res, null))
+	Promise.resolve()
+		.then(() => sendSuccess(res, null))
 );

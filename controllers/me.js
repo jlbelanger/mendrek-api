@@ -10,10 +10,10 @@ import { sendError, sendSuccess } from '../utilities/response';
  * @returns {Promise}
  */
 exports.index = (req, res) => (
-  Spotify.authenticate(req)
-    .then(() => spotifyClient.getMe())
-    .then(response => sendSuccess(res, formatUser(response.body)))
-    .catch(response => sendError(res, response))
+	Spotify.authenticate(req)
+		.then(() => spotifyClient.getMe())
+		.then(response => sendSuccess(res, formatUser(response.body)))
+		.catch(response => sendError(res, response))
 );
 
 /**
@@ -23,8 +23,8 @@ exports.index = (req, res) => (
  * @returns {Promise}
  */
 exports.playlists = (req, res) => (
-  Spotify.authenticate(req)
-    .then(() => spotifyClient.getUserPlaylists())
-    .then(response => sendSuccess(res, formatPlaylists(response.body)))
-    .catch(response => sendError(res, response))
+	Spotify.authenticate(req)
+		.then(() => spotifyClient.getUserPlaylists())
+		.then(response => sendSuccess(res, formatPlaylists(response.body)))
+		.catch(response => sendError(res, response))
 );

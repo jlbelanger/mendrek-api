@@ -9,19 +9,19 @@ const app = require('../app');
  * @param {number} val
  */
 function normalizePort(val) {
-  const portVal = parseInt(val, 10);
+	const portVal = parseInt(val, 10);
 
-  if (Number.isNaN(portVal)) {
-    // named pipe
-    return val;
-  }
+	if (Number.isNaN(portVal)) {
+		// named pipe
+		return val;
+	}
 
-  if (portVal >= 0) {
-    // port number
-    return portVal;
-  }
+	if (portVal >= 0) {
+		// port number
+		return portVal;
+	}
 
-  return false;
+	return false;
 }
 
 /**
@@ -29,34 +29,34 @@ function normalizePort(val) {
  * @param {Object} error
  */
 function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
+	if (error.syscall !== 'listen') {
+		throw error;
+	}
 
-  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
+	const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(`${bind} requires elevated privileges`);
-      process.exit(1);
-      break;
+	// handle specific listen errors with friendly messages
+	switch (error.code) {
+		case 'EACCES':
+			console.error(`${bind} requires elevated privileges`);
+			process.exit(1);
+			break;
 
-    case 'EADDRINUSE':
-      console.error(`${bind} is already in use`);
-      process.exit(1);
-      break;
+		case 'EADDRINUSE':
+			console.error(`${bind} is already in use`);
+			process.exit(1);
+			break;
 
-    default:
-      throw error;
-  }
+		default:
+			throw error;
+	}
 }
 
 /**
  * @description Listens for HTTP server "listening" event.
  */
 function onListening() {
-  console.log(`Listening on ${process.env.MENDREK_API_DOMAIN}${process.env.MENDREK_API_PATH}`);
+	console.log(`Listening on ${process.env.MENDREK_API_DOMAIN}${process.env.MENDREK_API_PATH}`);
 }
 
 // Get port from environment and store in Express.

@@ -10,8 +10,8 @@ import { sendError, sendSuccess } from '../utilities/response';
  * @returns {Promise}
  */
 exports.show = (req, res) => (
-  Spotify.authenticate(req)
-    .then(() => spotifyClient.getAlbum(req.params.id))
-    .then(response => sendSuccess(res, formatAlbum(response.body, true)))
-    .catch(response => sendError(res, response))
+	Spotify.authenticate(req)
+		.then(() => spotifyClient.getAlbum(req.params.id))
+		.then(response => sendSuccess(res, formatAlbum(response.body, true)))
+		.catch(response => sendError(res, response))
 );
