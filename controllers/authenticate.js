@@ -8,9 +8,9 @@ import spotifyClient from '../spotify-client';
 dotenv.config();
 
 /**
- * @description Initiates Spotify authentication.
- * @param {Object} req
- * @param {Object} res
+ * Initiates Spotify authentication.
+ * @param {object} req
+ * @param {object} res
  */
 exports.index = (req, res) => {
 	const state = crypto.randomBytes(20).toString('hex');
@@ -22,9 +22,9 @@ exports.index = (req, res) => {
 };
 
 /**
- * @description Handles Spotify authentication response.
- * @param {Object} req
- * @param {Object} res
+ * Handles Spotify authentication response.
+ * @param {object} req
+ * @param {object} res
  * @returns {Promise}
  */
 exports.callback = (req, res) => {
@@ -57,9 +57,9 @@ exports.callback = (req, res) => {
 };
 
 /**
- * @description Deletes the access token.
- * @param {Object} req
- * @param {Object} res
+ * Deletes the access token.
+ * @param {object} req
+ * @param {object} res
  * @returns {Promise}
  */
 exports.logout = (req, res) => {
@@ -81,13 +81,13 @@ exports.logout = (req, res) => {
 					sendSuccess(res, 'Logged out.');
 				})
 		))
-		.catch(err => sendError(res, err.message, 401));
+		.catch((err) => sendError(res, err.message, 401));
 };
 
 /**
- * @description Refreshes the access token.
- * @param {Object} req
- * @param {Object} res
+ * Refreshes the access token.
+ * @param {object} req
+ * @param {object} res
  * @returns {Promise}
  */
 exports.refresh = (req, res) => {
@@ -114,5 +114,5 @@ exports.refresh = (req, res) => {
 			return Promise.all([newSession, Session.update(oldAccessToken, newSession)]);
 		})
 		.then(([newSession]) => sendSuccess(res, newSession))
-		.catch(err => sendError(res, err.message, 401));
+		.catch((err) => sendError(res, err.message, 401));
 };

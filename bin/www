@@ -5,7 +5,7 @@ const http = require('http');
 const app = require('../app');
 
 /**
- * @description Normalizes a port into a number, string, or false.
+ * Normalizes a port into a number, string, or false.
  * @param {number} val
  */
 function normalizePort(val) {
@@ -25,8 +25,8 @@ function normalizePort(val) {
 }
 
 /**
- * @description Listens for HTTP server "error" event.
- * @param {Object} error
+ * Listens for HTTP server "error" event.
+ * @param {object} error
  */
 function onError(error) {
 	if (error.syscall !== 'listen') {
@@ -53,7 +53,7 @@ function onError(error) {
 }
 
 /**
- * @description Listens for HTTP server "listening" event.
+ * Listens for HTTP server "listening" event.
  */
 function onListening() {
 	console.log(`Listening on ${process.env.MENDREK_API_DOMAIN}${process.env.MENDREK_API_PATH}`);

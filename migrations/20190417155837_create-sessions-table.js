@@ -1,4 +1,4 @@
-exports.up = knex => (
+exports.up = (knex) => (
 	knex.schema.createTable('sessions', (table) => {
 		table.increments('id');
 		table.string('access_token', 255).notNullable();
@@ -7,6 +7,6 @@ exports.up = knex => (
 	})
 );
 
-exports.down = knex => (
+exports.down = (knex) => (
 	knex.schema.dropTable('sessions')
 );

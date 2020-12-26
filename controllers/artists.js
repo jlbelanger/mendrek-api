@@ -4,9 +4,9 @@ import { formatArtist } from '../utilities/format';
 import { sendError, sendSuccess } from '../utilities/response';
 
 /**
- * @description Returns data about a single artist.
- * @param {Object} req
- * @param {Object} res
+ * Returns data about a single artist.
+ * @param {object} req
+ * @param {object} res
  * @returns {Promise}
  */
 exports.show = (req, res) => (
@@ -28,7 +28,7 @@ exports.show = (req, res) => (
 		})
 		.then(([artist, ...albums]) => {
 			const promises = [artist];
-			const albumIds = albums.map(a => a.body.items.map(album => album.id));
+			const albumIds = albums.map((a) => a.body.items.map((album) => album.id));
 			const num = albumIds.length;
 			let i;
 			for (i = 0; i < num; i += 1) {
@@ -37,5 +37,5 @@ exports.show = (req, res) => (
 			return Promise.all(promises);
 		})
 		.then(([artist, ...albums]) => sendSuccess(res, formatArtist(artist.body, albums)))
-		.catch(response => sendError(res, response))
+		.catch((response) => sendError(res, response))
 );

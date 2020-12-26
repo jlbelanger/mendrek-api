@@ -7,8 +7,8 @@ import Playlists from './controllers/playlists';
 import { sendError } from './utilities/response';
 
 /**
- * @description Initializes routes.
- * @param {Object} app
+ * Initializes routes.
+ * @param {object} app
  */
 module.exports = (app) => {
 	app.route('/').get(Index.index);

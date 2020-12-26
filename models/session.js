@@ -4,7 +4,7 @@ const table = 'sessions';
 
 export default class Session {
 	/**
-	 * @description Retrieves an existing session.
+	 * Retrieves an existing session.
 	 * @param {string} accessToken
 	 * @returns {Promise}
 	 */
@@ -16,8 +16,8 @@ export default class Session {
 	}
 
 	/**
-	 * @description Creates a new session.
-	 * @param {Object} data
+	 * Creates a new session.
+	 * @param {object} data
 	 * @returns {Promise}
 	 */
 	static add(data) {
@@ -26,9 +26,9 @@ export default class Session {
 	}
 
 	/**
-	 * @description Updates an existing session.
+	 * Updates an existing session.
 	 * @param {string} oldAccessToken
-	 * @param {Object} newData
+	 * @param {object} newData
 	 * @returns {Promise}
 	 */
 	static update(oldAccessToken, newData) {
@@ -39,7 +39,7 @@ export default class Session {
 	}
 
 	/**
-	 * @description Deletes an existing session.
+	 * Deletes an existing session.
 	 * @param {string} accessToken
 	 * @returns {Promise}
 	 */

@@ -1,5 +1,5 @@
 /**
- * @description Calculates the expiry date.
+ * Calculates the expiry date.
  * @param {number} expiresIn
  * @returns {string}
  */
@@ -12,9 +12,9 @@ export function getExpiryDate(expiresIn) {
 }
 
 /**
- * @description Collects session data.
- * @param {Object} body
- * @returns {Object}
+ * Collects session data.
+ * @param {object} body
+ * @returns {object}
  */
 export function getSessionData(body) {
 	const output = {
@@ -28,8 +28,8 @@ export function getSessionData(body) {
 }
 
 /**
- * @description Finds access token in request.
- * @param {Object} req
+ * Finds access token in request.
+ * @param {object} req
  * @returns {string}
  */
 export function getToken(req) {

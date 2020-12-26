@@ -1,7 +1,7 @@
 /**
- * @description Returns an unsuccessful response.
- * @param {Object} res
- * @param {Object} response
+ * Returns an unsuccessful response.
+ * @param {object} res
+ * @param {object} response
  * @param {number} status
  * @returns {Promise}
  */
@@ -30,10 +30,10 @@ export function sendError(res, response, status) {
 }
 
 /**
- * @description Returns a file.
- * @param {Object} res
+ * Returns a file.
+ * @param {object} res
  * @param {string} filename
- * @param {Object} data
+ * @param {object} data
  * @returns {Promise}
  */
 export function sendFile(res, filename, data) {
@@ -44,9 +44,9 @@ export function sendFile(res, filename, data) {
 }
 
 /**
- * @description Returns a successful response.
- * @param {Object} res
- * @param {Object} response
+ * Returns a successful response.
+ * @param {object} res
+ * @param {object} response
  * @returns {Promise}
  */
 export function sendSuccess(res, response) {

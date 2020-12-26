@@ -5,22 +5,22 @@ import { formatPlaylist } from '../utilities/format';
 import { sendError, sendFile, sendSuccess } from '../utilities/response';
 
 /**
- * @description Returns data about a single playlist.
- * @param {Object} req
- * @param {Object} res
+ * Returns data about a single playlist.
+ * @param {object} req
+ * @param {object} res
  * @returns {Promise}
  */
 exports.show = (req, res) => (
 	Spotify.authenticate(req)
 		.then(() => spotifyClient.getPlaylist(req.params.id))
-		.then(response => sendSuccess(res, formatPlaylist(response.body)))
-		.catch(response => sendError(res, response))
+		.then((response) => sendSuccess(res, formatPlaylist(response.body)))
+		.catch((response) => sendError(res, response))
 );
 
 /**
- * @description Exports a playlist to CSV.
- * @param {Object} req
- * @param {Object} res
+ * Exports a playlist to CSV.
+ * @param {object} req
+ * @param {object} res
  * @returns {Promise}
  */
 exports.csv = (req, res) => (
@@ -30,13 +30,13 @@ exports.csv = (req, res) => (
 			const filename = `mendrek-playlist-${req.params.id}.csv`;
 			return sendFile(res, filename, csv(response));
 		})
-		.catch(response => sendError(res, response))
+		.catch((response) => sendError(res, response))
 );
 
 /**
- * @description Exports a playlist to JSON.
- * @param {Object} req
- * @param {Object} res
+ * Exports a playlist to JSON.
+ * @param {object} req
+ * @param {object} res
  * @returns {Promise}
  */
 exports.json = (req, res) => (
@@ -46,5 +46,5 @@ exports.json = (req, res) => (
 			const filename = `mendrek-playlist-${req.params.id}.json`;
 			return sendFile(res, filename, json(response));
 		})
-		.catch(response => sendError(res, response))
+		.catch((response) => sendError(res, response))
 );

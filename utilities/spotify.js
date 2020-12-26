@@ -3,8 +3,8 @@ import spotifyClient from '../spotify-client';
 
 export default class Spotify {
 	/**
-	 * @description Authenticates Spotify requests.
-	 * @param {Object} req
+	 * Authenticates Spotify requests.
+	 * @param {object} req
 	 * @returns {Promise}
 	 */
 	static authenticate(req) {

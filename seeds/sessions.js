@@ -1,4 +1,4 @@
-exports.seed = knex => (
+exports.seed = (knex) => (
 	knex('sessions')
 		.del()
 		.then(() => (

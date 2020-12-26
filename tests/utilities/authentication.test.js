@@ -62,7 +62,7 @@ describe('getToken', () => {
 
 	context('with token in the header', () => {
 		beforeEach(() => {
-			mockReq.header = name => (name === 'Authentication' ? 'foo' : null);
+			mockReq.header = (name) => (name === 'Authentication' ? 'foo' : null);
 		});
 
 		it('returns the token', () => {

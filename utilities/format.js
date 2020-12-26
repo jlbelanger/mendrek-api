@@ -34,7 +34,7 @@ export function formatPlaylist(playlist) {
 }
 
 export function formatPlaylists(playlists) {
-	return playlists.items.map(playlist => (
+	return playlists.items.map((playlist) => (
 		{
 			id: playlist.id,
 			name: playlist.name,
@@ -51,7 +51,7 @@ export function formatTracks(album, tracks) {
 		const output = {
 			id: track.id,
 			name: track.name,
-			artists: track.artists.map(trackArtist => (
+			artists: track.artists.map((trackArtist) => (
 				{
 					id: trackArtist.id,
 					name: trackArtist.name,
