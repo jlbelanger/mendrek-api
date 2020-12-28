@@ -8,8 +8,8 @@ View the app at https://mendrek.jennybelanger.com/
 
 ### Install requirements
 
-* [Docker](https://www.docker.com/get-started)
-* [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Docker](https://www.docker.com/get-started)
+- [Yarn](https://classic.yarnpkg.com/en/docs/install)
 
 ### Create a Spotify app
 
@@ -56,7 +56,7 @@ docker exec -it mendrek sh -c 'knex migrate:latest'
 
 See [Mendrek app](https://github.com/jlbelanger/mendrek-app).
 
-## Deploying
+## Deployment
 
 Essentially, to set up the repo on the server:
 
@@ -92,10 +92,10 @@ Note: The deploy script included in this repo depends on other scripts that only
 
 ### Connecting to the database
 
-* **Host**: 0.0.0.0
-* **Username**: mendrek
-* **Password**: mendrek
-* **Database**: mendrek
+- **Host**: 0.0.0.0
+- **Username**: mendrek
+- **Password**: mendrek
+- **Database**: mendrek
 
 ### Running tests
 
