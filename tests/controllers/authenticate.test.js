@@ -37,7 +37,8 @@ describe('Authenticate', () => {
 		it('redirects to Spotify', () => {
 			Authenticate.index(mockReq, mockRes);
 			const redirectUri = `${process.env.MENDREK_API_DOMAIN}${process.env.MENDREK_API_PATH}authenticate/callback`;
-			const cont = `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${redirectUri}&scope=playlist-read-private&state=12345678901234567890`;
+			let cont = `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}`;
+			cont += `&response_type=code&redirect_uri=${redirectUri}&scope=playlist-read-private&state=12345678901234567890`;
 			expect(mockRes.redirect).to.have.been.calledWith(cont);
 		});
 	});

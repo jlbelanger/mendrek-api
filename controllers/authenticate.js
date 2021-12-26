@@ -49,7 +49,8 @@ exports.callback = (req, res) => {
 			const session = getSessionData(response.body);
 			return Session.add(session)
 				.then(() => {
-					const url = `${process.env.MENDREK_APP_URL}/?token=${encodeURIComponent(session.access_token)}&expires=${encodeURIComponent(session.expires)}`;
+					let url = process.env.MENDREK_APP_URL;
+					url += `/?token=${encodeURIComponent(session.access_token)}&expires=${encodeURIComponent(session.expires)}`;
 					res.redirect(url);
 				});
 		})
