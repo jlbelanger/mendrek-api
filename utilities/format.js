@@ -25,11 +25,12 @@ export function formatArtist(artist, albums) {
 	return output;
 }
 
-export function formatPlaylist(playlist) {
+export function formatPlaylist(data) {
 	return {
-		id: playlist.id,
-		name: playlist.name,
-		tracks: formatTracks(null, playlist.tracks), // eslint-disable-line no-use-before-define
+		id: data.playlist.id,
+		name: data.playlist.name,
+		total: data.tracks.length,
+		tracks: formatTracks(null, data.tracks), // eslint-disable-line no-use-before-define
 	};
 }
 
@@ -43,7 +44,7 @@ export function formatPlaylists(playlists) {
 }
 
 export function formatTracks(album, tracks) {
-	return tracks.items.map((t) => {
+	return tracks.map((t) => {
 		let track = t;
 		if (t.track) {
 			track = t.track;

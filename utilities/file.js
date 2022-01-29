@@ -4,7 +4,7 @@
  * @returns {string}
  */
 export function csv(data) {
-	let output = data.body.tracks.items;
+	let output = data.tracks;
 	output = output.map((item) => (
 		[
 			item.track.id,
@@ -26,7 +26,7 @@ export function csv(data) {
  * @returns {string}
  */
 export function json(data) {
-	const output = data.body.tracks.items.map((item) => (
+	const output = data.tracks.map((item) => (
 		{
 			id: item.track.id,
 			name: item.track.name,
