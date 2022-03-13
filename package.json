@@ -2,7 +2,7 @@
 	"name": "mendrek-api",
 	"version": "1.0.0",
 	"description": "A Spotify API wrapper for the Mendrek app.",
-	"license": "MIT",
+	"license": "GPL-3.0-only",
 	"author": {
 		"name": "Jenny Belanger",
 		"email": "mail@jennybelanger.com",
