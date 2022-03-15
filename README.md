@@ -1,60 +1,52 @@
 # Mendrek API
 
-## Demo
-
 View the app at https://mendrek.jennybelanger.com/
 
-## Development setup
+## Development
 
-### Install requirements
+### Requirements
 
 - [Docker](https://www.docker.com/get-started)
-- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Git](https://git-scm.com/)
 
-### Create a Spotify app
+### Setup
 
-Create a Spotify application: https://developer.spotify.com/dashboard/applications
-
-Add `http://localhost:5309/authenticate/callback` as a whitelisted Redirect URI.
-
-### Clone the API repo
+First, [create a Spotify application](https://developer.spotify.com/dashboard/applications). Add `http://localhost:5309/authenticate/callback` as a whitelisted Redirect URI.
 
 ``` bash
+# Clone the API repo
 git clone https://github.com/jlbelanger/mendrek-api.git
 cd mendrek-api
-```
 
-All other commands should be run in the `mendrek-api` folder.
-
-### Configure environment settings
-
-``` bash
+# Configure the environment settings
 cp .env.example .env
-```
+# Copy the Client ID and Client Secret from your Spotify application into .env
 
-Copy the Client ID and Client Secret from your Spotify application into `docker-compose.yml`.
-
-### Start the API
-
-``` bash
+# Start the API
 docker-compose up --build
-```
 
-Once you see the output `Listening on http://localhost:5309` from the web container and `mysqld: ready for connections` from the db container, it should be ready.
+# Once you see the output `Listening on http://localhost:5309` from the web container and `mysqld: ready for connections` from the db container, it should be ready.
 
-To check if it's working, go to http://localhost:5309/. You should see `{"success": true}`.
+# To check if it's working, go to http://localhost:5309/. You should see `{"success": true}`.
 
-### Run database migrations
-
-In a new window:
-
-``` bash
+# In a new window:
+# Run the database migrations
 docker exec -it mendrek sh -c 'knex migrate:latest'
 ```
 
-### Setup the app
+Then, setup the [Mendrek app](https://github.com/jlbelanger/mendrek-app).
 
-See [Mendrek app](https://github.com/jlbelanger/mendrek-app).
+### Lint
+
+``` bash
+docker exec -it mendrek sh -c 'yarn lint'
+```
+
+### Test
+
+``` bash
+docker exec -it mendrek sh -c 'yarn test'
+```
 
 ## Deployment
 
@@ -86,19 +78,4 @@ Note: The deploy script included in this repo depends on other scripts that only
 
 ``` bash
 ./deploy.sh
-```
-
-## Helpful development stuff
-
-### Connecting to the database
-
-- **Host**: 0.0.0.0
-- **Username**: mendrek
-- **Password**: mendrek
-- **Database**: mendrek
-
-### Running tests
-
-``` bash
-docker exec -it mendrek sh -c 'yarn test'
 ```
