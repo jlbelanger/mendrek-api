@@ -7,6 +7,7 @@ View the app at https://mendrek.jennybelanger.com/
 ### Requirements
 
 - [Docker](https://www.docker.com/get-started)
+	- [Yarn](https://classic.yarnpkg.com/en/docs/install)
 - [Git](https://git-scm.com/)
 
 ### Setup
