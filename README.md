@@ -63,7 +63,7 @@ yarn global add pm2@4.4.0
 pm2 start start.js --name mendrek-api
 ```
 
-For subsequent deploys, push changes to master, then run the following on the server:
+For subsequent deploys, push changes to the main branch, then run the following on the server:
 
 ``` bash
 cd mendrek-api
