@@ -1,5 +1,5 @@
 {
-	"name": "mendrek-api",
+	"name": "@jlbelanger/mendrek-api",
 	"version": "1.0.0",
 	"description": "A Spotify API wrapper for the Mendrek app.",
 	"license": "GPL-3.0-only",
