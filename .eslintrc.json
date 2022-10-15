@@ -4,6 +4,13 @@
 		"mocha": true
 	},
 	"rules": {
+		"comma-dangle": ["error", {
+			"arrays": "always-multiline",
+			"objects": "always-multiline",
+			"imports": "always-multiline",
+			"exports": "always-multiline",
+			"functions": "never"
+		}],
 		"import/no-import-module-exports": 0,
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"max-len": ["error", { "code": 150 }],

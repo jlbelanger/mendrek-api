@@ -15,7 +15,7 @@
 	"scripts": {
 		"start": "node_modules/.bin/babel-node ./bin/www",
 		"lint": "yarn lint:js",
-		"lint:js": "node_modules/.bin/eslint .",
+		"lint:js": "node_modules/.bin/eslint . --ext .js",
 		"test": "NODE_ENV=test node_modules/.bin/mocha ./tests --recursive --file start-test.js",
 		"coverage": "NODE_ENV=test ./node_modules/.bin/nyc --reporter=text yarn test"
 	},
