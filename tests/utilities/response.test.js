@@ -1,7 +1,7 @@
+import { sendError, sendFile, sendSuccess } from '../../utilities/response';
 import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import { sendError, sendFile, sendSuccess } from '../../utilities/response';
 
 chai.use(sinonChai);
 

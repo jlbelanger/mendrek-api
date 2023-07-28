@@ -1,14 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import dotenv from 'dotenv';
-import nock from 'nock';
-import db from '../db';
-import artistData from './data/v1/artists/foo.json';
-import artistAlbumsData from './data/v1/artists/foo/albums.json';
-import artistManyAlbumsData from './data/v1/artists/foo-many-albums/albums.json';
 import albumData from './data/v1/albums/foo.json';
 import albumSearchData from './data/v1/albums/search.json';
+import artistAlbumsData from './data/v1/artists/foo/albums.json';
+import artistData from './data/v1/artists/foo.json';
+import artistManyAlbumsData from './data/v1/artists/foo-many-albums/albums.json';
+import db from '../db';
+import dotenv from 'dotenv';
 import meData from './data/v1/me.json';
 import mePlaylistsData from './data/v1/me/playlists.json';
+import nock from 'nock';
 import playlistData from './data/v1/playlists/foo.json';
 
 dotenv.config();

@@ -1,5 +1,5 @@
-import chai from 'chai';
 import { csv, json } from '../../utilities/file';
+import chai from 'chai';
 
 const expect = chai.expect;
 const data = {
